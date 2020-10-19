@@ -1,0 +1,53 @@
+<app-navbar [usuario]="usuario.uid" *ngIf="usuario"></app-navbar>
+<app-aside [uid]="usuario.uid" *ngIf="usuario"></app-aside>
+
+<div class="content-wrapper" style="padding-top: 20px !important;">
+
+  <section class="content">
+
+
+    <h1>HOLA DESDE LA VIEW DEL PROYECTO</h1>
+
+    <button *ngIf="my" type="button" class="btn btn-outline-primary " data-toggle="modal" data-target="#modal-default">Invitar</button>
+    <button *ngIf="!my" type="button" class="btn btn-outline-primary " >Unirme</button>
+
+
+  </section>
+
+</div>
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<app-footer [status]="'home'"></app-footer>
+
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 style="float: right;" class="modal-title">Invita a personas a evaluar tu proyecto...</h4>
+  
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+  
+          <form [formGroup]="inviteForm">
+            <div class="form-group">
+              <label for="formGroupExampleInput">Ingresa el email del invitado</label>
+              <input type="email" class="form-control" id="formGroupExampleInput" placeholder="Email" formControlName="email">
+            </div>
+
+          </form>
+          
+          <p style="padding: 30px 5px 5px 5px; color: red; text-align: center; width: 100%;"> Por favor,  asegurate de llenar todos los campos solicitados*</p>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="submit()" [disabled]="inviteForm.invalid">Enviar Invitacion</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>

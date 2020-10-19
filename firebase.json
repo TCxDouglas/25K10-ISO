@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "ISOproscanner",
+      "public": "dist/ISOproscanner",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

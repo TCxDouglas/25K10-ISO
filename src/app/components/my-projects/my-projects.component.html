@@ -1,0 +1,19 @@
+
+<app-navbar [usuario]="usuario.uid"  *ngIf="usuario" ></app-navbar>
+<app-aside [uid]="usuario.uid"  *ngIf="usuario"></app-aside>
+
+<div class="content-wrapper" style="padding-top: 20px !important;">
+
+  <section class="content" >
+
+      <app-my-projects-content [usuario] = "usuario" [projects] = "projects"></app-my-projects-content>
+
+      
+  </section>
+
+</div>
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<app-footer [status]="'home'"></app-footer>
+

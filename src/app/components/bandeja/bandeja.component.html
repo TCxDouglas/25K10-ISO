@@ -1,0 +1,15 @@
+<app-navbar [usuario]="usuario.uid"  *ngIf="usuario" ></app-navbar>
+<app-aside [uid]="usuario.uid"  *ngIf="usuario"></app-aside>
+
+<div class="content-wrapper" style="padding-top: 20px !important;">
+
+  <section class="content" *ngIf="usuario" >
+      
+      <app-bandeja-content [usuario] = "usuario"> </app-bandeja-content>
+  </section>
+
+</div>
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<app-footer [status]="'home'"></app-footer>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "iso-proscanner": {
+      "hosting": {
+        "ISOproscanner": [
+          "iso-proscanner"
+        ]
+      }
+    }
+  }
+}
