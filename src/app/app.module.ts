@@ -13,6 +13,12 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
+import { MaterialModule } from './material/material.module';
+
+
+
+
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -25,6 +31,7 @@ import { BandejaComponent } from './components/bandeja/bandeja.component';
 import { BandejaContentComponent } from './components/bandeja/bandeja-content/bandeja-content.component';
 import { MainHeaderComponent } from './components/main-header/main-header.component';
 import { ViewProjectComponent } from './components/view-project/view-project.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -50,7 +57,9 @@ import { ViewProjectComponent } from './components/view-project/view-project.com
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    routing
+    MaterialModule,
+    routing,
+    BrowserAnimationsModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

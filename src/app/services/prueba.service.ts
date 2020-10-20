@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { first, map } from 'rxjs/operators';
-import { Global } from '../models/global';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import Swal from 'sweetalert2'
+
 
 
 
@@ -46,9 +47,35 @@ export class PruebaService {
 
     logout() {
 
-        this.afAuth.auth.signOut().then(() => {
-            this._router.navigate(['/auth/login']);
-        });
+
+
+
+        Swal.fire({
+            title: '¿Cerrar sesión?',
+            text: "Se cerrará tu sesión!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK'
+        }).then(async (result) => {
+            if (result.value) {
+
+                Swal.fire({
+                    title: 'Cerrando Sesion...',
+                    allowOutsideClick: false,
+                    timer: 1000,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    },
+                    onClose: () => {
+                        this.afAuth.auth.signOut().then(() => {
+                            this._router.navigate(['/auth/login']);
+                        });
+                    }
+                });
+            }
+        })
 
     }
 
@@ -72,66 +99,121 @@ export class PruebaService {
 
     //PROJECTS
 
-    getProject(creator: string, id: string){
+    getProject(creator: string, id: string) {
 
-      return  this.db.doc(`users/${creator}/projects/${id}`).ref.get();
+        return this.db.doc(`users/${creator}/projects/${id}`).ref.get();
 
     }
 
-    getMyProjcts(uid:string){
-      return  this.db.collection(`users/${uid}/projects/` , ref => ref.orderBy('fecha', 'desc').limit(50)).snapshotChanges().pipe(map(actions => {
-      
-      return actions.map(a => {
-        const data = a.payload.doc.data() as any;
-        data.id = a.payload.doc.id
-        //console.log(data);
-        return data;
-      })
-    }));
+    getMyProjcts(uid: string) {
+        return this.db.collection(`users/${uid}/projects/`, ref => ref.orderBy('fecha', 'desc').limit(50)).snapshotChanges().pipe(map(actions => {
+
+            return actions.map(a => {
+                const data = a.payload.doc.data() as any;
+                data.id = a.payload.doc.id
+                //console.log(data);
+                return data;
+            })
+        }));
     }
 
     createProject(data) {
 
         return this.db.collection(`users/${data.creador}/projects`).add(data).then(resp =>
-            this.db.collection(`projects/${data.creador}/projects`).add(data).then(()=>{
-                setTimeout(() => { this._router.navigate(['/home/dashboard'])}, 2500);
+            this.db.collection(`projects/${data.creador}/projects`).add(data).then(() => {
+
+
+                setTimeout(() => {
+                    this._router.navigate(['/home/dashboard'])
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Proyecto creado exitosamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }, 1500);
 
             })
 
-        ).catch(err => console.log(err));
+        ).catch(err => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Algo salio mal',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            console.log(err);
+        });
 
     }
 
 
-    getInviteUser(email:string){
-        return  this.db.collection(`users/`, ref => ref.where('email', '==', email)).snapshotChanges().pipe(map(actions => {
-      
+    getInviteUser(email: string) {
+        return this.db.collection(`users/`, ref => ref.where('email', '==', email)).snapshotChanges().pipe(map(actions => {
+
             return actions.map(a => {
-              const data = a.payload.doc.data() as any;
-              return data;
+                const data = a.payload.doc.data() as any;
+                return data;
             })
-          }));
+        }));
 
     }
 
-    sendInvatition(uid:string, data: any){
+    sendInvatition(uid: string, data: any) {
 
-        return this.db.collection(`users/${uid}/inbox`).add(data);
+        return this.db.collection(`users/${uid}/inbox`).add(data).then(() => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Se invito al usuario',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
 
     }
 
-    getInbox(uid:string){
+    getInbox(uid: string) {
 
-        return  this.db.collection(`users/${uid}/inbox/` , ref => ref.orderBy('fecha', 'desc').limit(10)).snapshotChanges().pipe(map(actions => {
-      
+        return this.db.collection(`users/${uid}/inbox/`, ref => ref.orderBy('fecha', 'desc').limit(10)).snapshotChanges().pipe(map(actions => {
+
             return actions.map(a => {
-              const data = a.payload.doc.data() as any;
-              data.id = a.payload.doc.id
-              //console.log(data);
-              return data;
+                const data = a.payload.doc.data() as any;
+                data.id = a.payload.doc.id
+                //console.log(data);
+                return data;
             })
-          }));
+        }));
 
     }
 
+
+    joinToProject(data){
+
+        this.db.doc(`users/${data.creator}/projects/${data.project}/persons/${data.user}`).set(data.person).then((resp) => console.log('Exito')).catch(error => console.log(error));
+        this.db.doc(`users/${data.user}/projects/${data.project}/`).set(data.projectData).then((resp) => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Unido exitosamente',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }).catch(error => console.log(error));
+
+    }
+
+    validateJoin(creator: string,  project: string, user: string){
+
+       return this.db.collection(`users/${creator}/projects/${project}/persons/`, ref => ref.where('uid', '==', user)).snapshotChanges().pipe(map(actions => {
+
+        return actions.map(a => {
+            const data = a.payload.doc.data() as any;
+            return data;
+        })
+    }));
+    }
 }

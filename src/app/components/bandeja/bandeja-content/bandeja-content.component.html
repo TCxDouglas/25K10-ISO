@@ -18,15 +18,15 @@
  
                   <div class="table-responsive mailbox-messages">
                     <table class="table table-hover table-striped">
-                      <tbody>
+                      <tbody *ngFor = "let inbox of inboxs">
 
                       <tr>
-                        <td> <img src="{{usuario.photoURL}}" alt="image usuario" style="border-radius: 100%; width: 35px;"> </td>
+                        <td> <img src="{{inbox.foto}}" alt="image usuario" style="border-radius: 100%; width: 35px;"> </td>
                         <td class="mailbox-star"></td>
-                        <td class="mailbox-name"><b >{{usuario.displayName}}</b></td>
-                        <td class="mailbox-subject"><b> <a > HIPER EFE</a> </b> - Hola, te invito a unirte al proyecto...
+                        <td class="mailbox-name"><b >{{inbox.nombre}}</b></td>
+                        <td class="mailbox-subject"><b> <a > {{inbox.proyecto}} </a> </b> - {{inbox.mensaje}}
                         </td>
-                        <td class="mailbox-attachment" ><a href="#"><i class="fa fa-link"></i> </a> </td>
+                        <td class="mailbox-attachment" ><a [routerLink]="[inbox.link]" [routerLinkActive]="['active']"><i class="fa fa-link"></i> </a> </td>
                         <td class="mailbox-date">5 mins ago</td>
                       </tr>
 

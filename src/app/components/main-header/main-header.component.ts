@@ -15,6 +15,8 @@ export class MainHeaderComponent implements OnInit {
 
   newProject: FormGroup;
   @Input() usuario: any;
+  @Input() view: string;
+
 
   constructor( private auth2 : PruebaService, private fb: FormBuilder) { }
 
@@ -23,7 +25,7 @@ export class MainHeaderComponent implements OnInit {
         //asignar validaciones al formulario
         this.newProject = this.fb.group({
           nombre: ['', [Validators.required, Validators.minLength(5)]],
-          descripcion: ['',[Validators.required, Validators.minLength(10)]],
+          descripcion: ['',[Validators.required, Validators.minLength(60)]],
 
         });
   }

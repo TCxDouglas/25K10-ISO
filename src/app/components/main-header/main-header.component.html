@@ -1,4 +1,4 @@
-<div class="row" style=" place-items: center !important;">
+<div class="row" style=" place-items: center !important;" *ngIf="view != 'view'">
 
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
@@ -55,6 +55,32 @@
   <!-- /.col -->
 </div>
 
+<div class="row" style=" place-items: center !important;" *ngIf="view == 'view'">
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box">
+      <a [routerLink]="['/home/inbox']" [routerLinkActive]="['active']"
+        class="info-box-icon bg-danger elevation-1"><i class="fas fa-arrow-left"></i></a>
+
+      <div class="info-box-content">
+        <span class="info-box-number">
+          Atras
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+
+  <!-- /.col -->
+
+  <!-- fix for small devices only -->
+  <div class="clearfix hidden-md-up"></div>
+
+  <!-- /.col -->
+
+  <!-- /.col -->
+</div>
 
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog modal-lg">

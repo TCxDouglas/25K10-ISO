@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PruebaService } from '../../services/prueba.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
+import Swal from 'sweetalert2'
+
 
 
 @Component({
@@ -19,6 +21,8 @@ export class ViewProjectComponent implements OnInit {
   public usuario: any
   public my : boolean;
   inviteForm: FormGroup;
+  public project : any;
+  public unido : boolean;
 
   constructor(private _route: ActivatedRoute, private _router: Router, private auth2: PruebaService, private fb: FormBuilder) { }
 
@@ -40,8 +44,17 @@ export class ViewProjectComponent implements OnInit {
         this.my = true;
       }
       this.auth2.getProject(this.creator, this.id).then((data) => {
-        console.log(data.data());
+        //console.log(data.data());
+        this.project = data.data();
 
+        this.auth2.validateJoin(this.creator, this.id, this.usuario.uid).subscribe(resp =>{
+          if (resp.length == 0) {
+            this.unido = false;
+          } else {
+            this.unido = true;
+          }
+
+        })
       })
     } else {
       this._router.navigate(['/auth/login']);
@@ -50,21 +63,71 @@ export class ViewProjectComponent implements OnInit {
   }
 
   submit() {
-    this.auth2.getInviteUser(this.inviteForm.value.email).subscribe(resp => {
 
+
+    this.auth2.getInviteUser(this.inviteForm.value.email).subscribe(resp => {
+      Swal.fire({
+        title: 'Buscando usuario...',
+        allowOutsideClick: false,
+        timer: 1000,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        },
+        onClose: () => {
+  
+        }
+      });
       if (resp.length == 0) {
-        console.log('No se encontro al usuario');
+
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'No hay usuario registrado con este email',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
       } else {
         const data ={ 
-          link : `http://localhost:4200/view-project/${this.creator}/${this.id}`,
+          link : `/view-project/${this.creator}/${this.id}`,
           fecha : Date.now(),
           nombre: this.usuario.displayName,
-          mensaje : 'Hola, te invito a unirte a este proyecto...'
+          mensaje : 'Hola, te invito a unirte a este proyecto...',
+          foto : this.usuario.photoURL,
+          proyecto: this.project.nombre
         }
          this.auth2.sendInvatition(resp[0].uid, data);
       }
     });
+  }
+
+  unirme(){
+
+    Swal.fire({
+      title: 'Por favor espera...',
+      allowOutsideClick: false,
+      timer: 1000,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+      },
+      onClose: () => {
+
+      }
+    });
+
+    const data = {
+      creator : this.creator,
+      user : this.usuario.uid,
+      project : this.id,
+      projectData : this.project,
+      person : {
+        displayName : this.usuario.displayName,
+        email : this.usuario.email,
+        uid : this.usuario.uid
+      }
+    }
+
+    this.auth2.joinToProject(data);
   }
 
 }

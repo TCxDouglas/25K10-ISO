@@ -3,13 +3,120 @@
 
 <div class="content-wrapper" style="padding-top: 20px !important;">
 
-  <section class="content">
+  <section class="content" *ngIf="project">
+
+    <button *ngIf="my" type="button" class="btn btn-outline-primary " data-toggle="modal" data-target="#modal-invite"
+      style="float: right; max-width: 100px; margin-right: 10px;">Invitar</button>
+
+    <button *ngIf="!my && !unido" type="button" class="btn btn-outline-primary "
+      style="float: right; max-width: 100px; margin-right: 10px;" (click)="unirme()">Unirme</button>
+
+    <button class="btn btn-outline-primary " *ngIf = "my || unido"
+    style="float: right; max-width: 100px; margin-right: 10px;" [swal]="{ title: 'Enter your email', input: 'email' }"  >
+      Evaluar
+    </button>
 
 
-    <h1>HOLA DESDE LA VIEW DEL PROYECTO</h1>
+    <app-main-header [usuario]="usuario" [view]="'view'"></app-main-header>
 
-    <button *ngIf="my" type="button" class="btn btn-outline-primary " data-toggle="modal" data-target="#modal-default">Invitar</button>
-    <button *ngIf="!my" type="button" class="btn btn-outline-primary " >Unirme</button>
+
+    <h2 style="text-align: center; margin-bottom: 25px;"><strong>{{project.nombre}}</strong></h2>
+
+
+
+    <!-- /.col -->
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title" style="font-size: 16px;">Evaluaciones Realizadas</h3>
+
+
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+          <table class="table">
+            <tr>
+              <th>Usuario</th>
+              <th>Fecha</th>
+              <th>Status</th>
+              <th>% de Evaluacion</th>
+              <th>% Graficado</th>
+              <th>Comentario</th>
+              <th>Detalles</th>
+
+            </tr>
+            <tr>
+              <td>Josue Aparicio</td>
+              <td>Hace 2 dias</td>
+              <td><span class="badge bg-green">Aprovado</span></td>
+              <td><span class="badge bg-green">75%</span></td>
+              <td>
+                <div class="progress progress-xs">
+                  <div class="progress-bar progress-bar-danger" style="width: 75%"></div>
+                </div>
+              </td>
+
+              <td>Muy buen trabajo y muy buena precision de las HU</td>
+              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+
+            </tr>
+
+            <tr>
+              <td>Douglas Hrnandez</td>
+              <td>Hace 10 dias</td>
+              <td><span class="badge bg-red">Reprovado</span></td>
+              <td><span class="badge bg-red">45%</span></td>
+              <td>
+                <div class="progress progress-xs">
+                  <div class="progress-bar progress-bar-danger" style="width: 45%"></div>
+                </div>
+              </td>
+
+              <td>Buena distribucion pero las Hu estan muy incompletas</td>
+              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+
+            </tr>
+
+            <tr>
+              <td>Victor Lainez</td>
+              <td>Hace 1 dias</td>
+              <td><span class="badge bg-green">Aprovado</span></td>
+              <td><span class="badge bg-green">90%</span></td>
+              <td>
+                <div class="progress progress-xs">
+                  <div class="progress-bar progress-bar-danger" style="width: 90%"></div>
+                </div>
+              </td>
+
+              <td>Excelente trabajo, solo encontre pequenos bugs</td>
+              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+
+            </tr>
+
+            <tr>
+              <td>Luis Hernandez</td>
+              <td>Hace 6 dias</td>
+              <td><span class="badge bg-red">Reprovado</span></td>
+              <td><span class="badge bg-red">25%</span></td>
+              <td>
+                <div class="progress progress-xs">
+                  <div class="progress-bar progress-bar-danger" style="width: 25%"></div>
+                </div>
+              </td>
+
+              <td>Esto no sirve chitos, usen JQUERY</td>
+              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+
+            </tr>
+
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      <!-- /.box -->
+    </div>
 
 
   </section>
@@ -21,33 +128,36 @@
 <app-footer [status]="'home'"></app-footer>
 
 
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 style="float: right;" class="modal-title">Invita a personas a evaluar tu proyecto...</h4>
-  
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-  
-          <form [formGroup]="inviteForm">
-            <div class="form-group">
-              <label for="formGroupExampleInput">Ingresa el email del invitado</label>
-              <input type="email" class="form-control" id="formGroupExampleInput" placeholder="Email" formControlName="email">
-            </div>
+<div class="modal fade" id="modal-invite">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 style="float: right;" class="modal-title">Invita a personas a evaluar tu proyecto...</h4>
 
-          </form>
-          
-          <p style="padding: 30px 5px 5px 5px; color: red; text-align: center; width: 100%;"> Por favor,  asegurate de llenar todos los campos solicitados*</p>
-  
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal"  (click)="submit()" [disabled]="inviteForm.invalid">Enviar Invitacion</button>
-        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
       </div>
-      <!-- /.modal-content -->
+      <div class="modal-body">
+
+        <form [formGroup]="inviteForm">
+          <div class="form-group">
+            <label for="formGroupExampleInput">Ingresa el email del invitado</label>
+            <input type="email" class="form-control"  placeholder="Email"
+              formControlName="email">
+          </div>
+
+        </form>
+
+        <p style="padding: 30px 5px 5px 5px; color: red; text-align: center; width: 100%;"> Por favor, asegurate de
+          llenar todos los campos solicitados*</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submit()"
+          [disabled]="inviteForm.invalid">Enviar Invitacion</button>
+      </div>
     </div>
-    <!-- /.modal-dialog -->
+    <!-- /.modal-content -->
   </div>
+  <!-- /.modal-dialog -->
+</div>

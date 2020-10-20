@@ -14,7 +14,7 @@
               style="padding: 3px !important; font-weight: bold !important; font-size: 20px !important;">
               {{project.nombre}}</h5>
             <p class="card-text">{{project.descripcion}}</p>
-            <a [routerLink]="['/view-project', usuario.uid, project.id]" [routerLinkActive]="['active']" class="btn btn-primary">Ver Proyecto</a>
+            <a [routerLink]="['/view-project', project.creador, project.id]" [routerLinkActive]="['active']" class="btn btn-primary">Ver Proyecto</a>
           </div>
         </div>
       </div>
@@ -23,6 +23,9 @@
 
 
   </div>
+
+
+  <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
 
 </div>
 
