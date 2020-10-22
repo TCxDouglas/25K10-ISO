@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { PruebaService } from '../../services/prueba.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { NewProjectComponent } from '../dialogs/new-project/new-project.component';
+
+import Swal from 'sweetalert2'
+
 
 
 @Component({
@@ -13,34 +18,38 @@ import { PruebaService } from '../../services/prueba.service';
 export class MainHeaderComponent implements OnInit {
 
 
-  newProject: FormGroup;
   @Input() usuario: any;
   @Input() view: string;
 
 
-  constructor( private auth2 : PruebaService, private fb: FormBuilder) { }
+
+  constructor( private auth2 : PruebaService,  private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
-        //asignar validaciones al formulario
-        this.newProject = this.fb.group({
-          nombre: ['', [Validators.required, Validators.minLength(5)]],
-          descripcion: ['',[Validators.required, Validators.minLength(60)]],
 
-        });
   }
 
 
-  submit(){
-      const data = {
-        nombre: this.newProject.value.nombre,
-        descripcion: this.newProject.value.descripcion,
-        creador: this.usuario.uid,
-        fecha: Date.now()
-      };
-
-      //console.log(data);
-      this.auth2.createProject(data);
-    
+  openDialog(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '70%';
+    dialogConfig.height = '500px';
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.data = this.usuario;
+   const ref = this.dialog.open(NewProjectComponent, dialogConfig);
+    ref.afterClosed().subscribe(async res => {
+      //console.log(res.data);
+      this.auth2.createProject(res.data);
+  })
   }
+
+    //SMALL ALERTS
+    openSnackBar(message: string, action: string) {
+      this._snackBar.open(message, action, {
+        duration: 5000,
+      });
+    }
 }

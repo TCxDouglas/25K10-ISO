@@ -1,0 +1,27 @@
+
+
+  <div >
+    <h1 style="padding: 5px;">{{data.nombre}}</h1>
+    <p style="padding: 5px;">{{data.descripcion}}</p>
+    
+    
+    <mat-list role="list">
+        <mat-list-item role="listitem">Adecuacion Funcional : {{data.porcentajes.adecuacion.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Eficiencia de Desempeño : {{data.porcentajes.eficiencia.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Compatibilidad : {{data.porcentajes.compatibilidad.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Usabilidad : {{data.porcentajes.usabilidad.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Fiabilidad : {{data.porcentajes.fiabilidad.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Seguridad : {{data.porcentajes.seguridad.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Mantenibilidad : {{data.porcentajes.mantenibilidad.total}}%</mat-list-item>
+        <mat-list-item role="listitem">Portabilidad : {{data.porcentajes.portabilidad.total}}%</mat-list-item>
+    
+    </mat-list>
+    
+    
+    
+      <div style="margin-top: 20px;">
+        <button style="margin: 5px; float: right;" mat-flat-button color="primary" (click)="onSubmit()" >Confirmar</button>
+        <button style="margin: 5px; float: right;" mat-flat-button color="warn" (click)="onClose()">Cancelar</button>
+      </div>
+  </div>
+

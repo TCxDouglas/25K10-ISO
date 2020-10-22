@@ -47,9 +47,6 @@ export class PruebaService {
 
     logout() {
 
-
-
-
         Swal.fire({
             title: '¿Cerrar sesión?',
             text: "Se cerrará tu sesión!",
@@ -215,5 +212,25 @@ export class PruebaService {
             return data;
         })
     }));
+    }
+
+    getHUS(data){
+        return this.db.collection(`users/${data.creator}/projects/${data.project}/hus/`, ref => ref.where('subcaracteristica', '==', data.subcaracteristica)).snapshotChanges().pipe(map(actions => {
+
+            return actions.map(a => {
+                const data = a.payload.doc.data() as any;
+                data.id = a.payload.doc.id
+                return data;
+            })
+        }));
+    }
+
+    addHU(data){
+        return this.db.collection(`users/${data.creator}/projects/${data.project}/hus`).add(data).then(() => {console.log('exito')});
+    }
+
+    deleteUH(data){
+        return this.db.collection(`users/${data.creator}/projects/${data.project}/hus`).doc(data.id).delete().then(() => {console.log('exito')});
+
     }
 }

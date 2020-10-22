@@ -1,0 +1,147 @@
+<mat-toolbar>
+    <span>Nueva Sala</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1" style="left: 80%;">
+      <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<form [formGroup]="newProject">
+    <div class="form-group">
+      <label for="formGroupExampleInput">Ingresa el nombre de tu proyecto</label>
+      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre" formControlName="nombre">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Ingresa una descripcion sobre tu proyecto</label>
+      <input type="textarea" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" formControlName="descripcion">
+    </div>
+  </form>
+  
+  <p style="padding: 30px 5px 5px 5px; color: rgb(28, 24, 24); text-align: center; width: 100%;"> 
+    Debes agregar un porcentaje a cada caracteristica, la suma de los porcentajes debe de ser <strong>IGUAL A 100</strong>.
+    Para mas información sobre la ISO 25010, mira este <a href="https://www.youtube.com/watch?v=jyIeLQIjnbE&feature=youtu.be" target="_BLANK">video</a> 
+  </p>
+
+  <p style="padding: 30px 5px 5px 5px; color: red; text-align: center; width: 100%;">Por favor,  asegurate de llenar todos los campos solicitados.*</p>
+
+
+  <div style="max-width: 100%; overflow-x: scroll;">
+
+    <mat-horizontal-stepper linear #stepper style="min-width: 200%;" >
+      <mat-step [stepControl]="adecuacionForm" [editable] = "isEditable">
+        <form [formGroup]="adecuacionForm">
+          <ng-template matStepLabel>Adecuacion Funcional</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="eficienciaForm" [editable] = "isEditable">
+        <form [formGroup]="eficienciaForm">
+          <ng-template matStepLabel>Eficiencia de desempeño</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="compatibilidadForm" [editable] = "isEditable">
+        <form [formGroup]="compatibilidadForm">
+          <ng-template matStepLabel>Compatibilidad</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="usabilidadForm" [editable] = "isEditable">
+        <form [formGroup]="usabilidadForm">
+          <ng-template matStepLabel>Usabilidad</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="fiabilidadForm" [editable] = "isEditable">
+        <form [formGroup]="fiabilidadForm">
+          <ng-template matStepLabel>Fiabilidad</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="seguridadForm" [editable] = "isEditable">
+        <form [formGroup]="seguridadForm">
+          <ng-template matStepLabel>Seguriad</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="mantenibilidadForm" [editable] = "isEditable">
+        <form [formGroup]="mantenibilidadForm">
+          <ng-template matStepLabel>Mantenibilidad</ng-template>
+          <mat-form-field>
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+            <button mat-button matStepperNext>Listo</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="portabilidadForm" [editable] = "isEditable">
+        <form [formGroup]="portabilidadForm">
+          <ng-template matStepLabel>Portabilidad</ng-template>
+          <mat-form-field style="width: auto;">
+            <mat-label>%</mat-label>
+            <input matInput type="number" placeholder="20%" formControlName="porcentaje" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Atras</button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+  </div>
+
+  <div style="margin-top: 20px;">
+    <button style="margin: 5px; float: right;" mat-flat-button color="primary" (click)="submit()" [disabled] = "newProject.invalid">Guardar</button>
+    <button style="margin: 5px; float: right;" mat-flat-button color="warn" (click)="onClose()">Cancelar</button>
+  </div>

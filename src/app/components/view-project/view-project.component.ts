@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PruebaService } from '../../services/prueba.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { HusComponent } from '../dialogs/hus/hus.component';
+
 
 import Swal from 'sweetalert2'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 
@@ -24,7 +27,7 @@ export class ViewProjectComponent implements OnInit {
   public project : any;
   public unido : boolean;
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private auth2: PruebaService, private fb: FormBuilder) { }
+  constructor(private _route: ActivatedRoute, private _router: Router, private auth2: PruebaService, private fb: FormBuilder, public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     this.creator = this._route.snapshot.paramMap.get('creator');
@@ -130,4 +133,26 @@ export class ViewProjectComponent implements OnInit {
     this.auth2.joinToProject(data);
   }
 
+
+  addHU(ca : string, subca : string){
+
+    const data ={
+      caracteristica: ca,
+      subcaracteristica : subca,
+      creator: this.creator,
+      project : this.id
+    };
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '380px';
+    dialogConfig.height = '600px';
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.data = data;
+   const ref = this.dialog.open(HusComponent, dialogConfig);
+    ref.afterClosed().subscribe(async res => {
+      //console.log(res.data);
+
+  })
+  }
 }

@@ -32,6 +32,10 @@ import { BandejaContentComponent } from './components/bandeja/bandeja-content/ba
 import { MainHeaderComponent } from './components/main-header/main-header.component';
 import { ViewProjectComponent } from './components/view-project/view-project.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewProjectComponent } from './components/dialogs/new-project/new-project.component';
+import { ConfirmCreateComponent } from './components/dialogs/confirm-create/confirm-create.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { HusComponent } from './components/dialogs/hus/hus.component';
 
 
 @NgModule({
@@ -48,6 +52,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BandejaContentComponent,
     MainHeaderComponent,
     ViewProjectComponent,
+    NewProjectComponent,
+    ConfirmCreateComponent,
+    HusComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +68,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     routing,
     BrowserAnimationsModule
   ],
-  providers: [appRoutingProviders],
+  entryComponents: [
+    NewProjectComponent,
+    ConfirmCreateComponent,
+    HusComponent
+ ],
+  providers: [appRoutingProviders, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,8 +11,9 @@
     <button *ngIf="!my && !unido" type="button" class="btn btn-outline-primary "
       style="float: right; max-width: 100px; margin-right: 10px;" (click)="unirme()">Unirme</button>
 
-    <button class="btn btn-outline-primary " *ngIf = "my || unido"
-    style="float: right; max-width: 100px; margin-right: 10px;" [swal]="{ title: 'Enter your email', input: 'email' }"  >
+    <button class="btn btn-outline-primary " *ngIf="my || unido"
+      style="float: right; max-width: 100px; margin-right: 10px;"
+      [swal]="{ title: 'Enter your email', input: 'email' }">
       Evaluar
     </button>
 
@@ -57,7 +58,7 @@
               </td>
 
               <td>Muy buen trabajo y muy buena precision de las HU</td>
-              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+              <td class="mailbox-attachment"><a><i class="fa fa-link"></i> </a> </td>
 
             </tr>
 
@@ -73,7 +74,7 @@
               </td>
 
               <td>Buena distribucion pero las Hu estan muy incompletas</td>
-              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+              <td class="mailbox-attachment"><a><i class="fa fa-link"></i> </a> </td>
 
             </tr>
 
@@ -89,7 +90,7 @@
               </td>
 
               <td>Excelente trabajo, solo encontre pequenos bugs</td>
-              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+              <td class="mailbox-attachment"><a><i class="fa fa-link"></i> </a> </td>
 
             </tr>
 
@@ -105,7 +106,7 @@
               </td>
 
               <td>Esto no sirve chitos, usen JQUERY</td>
-              <td class="mailbox-attachment" ><a ><i class="fa fa-link"></i> </a> </td>
+              <td class="mailbox-attachment"><a><i class="fa fa-link"></i> </a> </td>
 
             </tr>
 
@@ -117,6 +118,268 @@
 
       <!-- /.box -->
     </div>
+
+
+
+    <mat-tab-group animationDuration="1500ms" style="margin-top: 80px; margin-bottom: 100px;">
+
+      <mat-tab label="Adecuación Funcional">
+        <div class=" " style="margin: 0px auto;">
+
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Completitud Funcional">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Adecuacion Funcional', 'Completitud Funcional')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Corrección Funcional">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Adecuacion Funcional', 'Correcion Funcional')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Pertinencia Funcional">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Adecuacion Funcional', 'Pertinencia Funcional')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Eficiencia de Desempeño">
+        <div style="display: grid; place-items: center;">
+
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Comportamiento Temporal">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Eficiencia de Desempeño', 'Comportamiento Temporal')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Utilización de Recursos">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Eficiencia de Desempeño', 'Utilización de Recursos')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Capacidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Eficiencia de Desempeño', 'Capacidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>    
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Compatibilidad">
+        <div style="display: grid; place-items: center;">
+
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Coexistencia">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Compatibilidad', 'Coexistencia')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Interoperabilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Compatibilidad', 'Interoperabilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Usabilidad">
+        <div style="display: grid; place-items: center;">
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Inteligibiliad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Usabilidad', 'Inteligibiliad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Aprendizaje">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Usabilidad', 'Aprendizaje')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Operabilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Usabilidad', 'Operabilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Protección frente a errores de usuario">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Usabilidad', 'Protección frente a errores de usuario')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Estética">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Usabilidad', 'Estética')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Accesibilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Usabilidad', 'Accesibilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Fiabilidad">
+        <div style="display: grid; place-items: center;">
+
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Madurez">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Fiabilidad', 'Madurez')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Disponibilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Fiabilidad', 'Disponibilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Tolerancia a fallos">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Fiabilidad', 'Tolerancia a fallos')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Capacidad de recuperación">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Fiabilidad', 'Capacidad de recuperación')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Seguridad">
+        <div style="display: grid; place-items: center;">
+
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Confidencialidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Seguridad', 'Confidencialidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Integridad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Seguridad', 'Integridad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="No repudio">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Seguridad', 'No repudio')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Autenticidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Seguridad', 'Autenticidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Responsabilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Seguridad', 'Responsabilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Mantenibilidad">
+        <div class=" " style="margin: 0px auto;">
+
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Modularidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Mantenibilidad', 'Modularidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Reusabilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Mantenibilidad', 'Reusabilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Analizabilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Mantenibilidad', 'Analizabilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Capacidad de ser modificado">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Mantenibilidad', 'Capacidad de ser modificado')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Capacidad de ser probado">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Mantenibilidad', 'Capacidad de ser probado')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Portabilidad">
+        <div style="display: grid; place-items: center;">
+          <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="Adaptabilidad">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Portabilidad', 'Adaptabilidad')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Facilidad de instalación">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Portabilidad', 'Facilidad de instalación')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="Capacidad de ser reemplazado">
+              <div style="padding: 30px; display: grid; place-items: center;">
+                <button style="margin: 5px;" mat-raised-button color="accent" (click)="addHU('Portabilidad', 'Capacidad de ser reemplazado')">Agregar HU</button>
+                <button style="margin: 5px;" mat-raised-button color="accent">Agregar Pregunta</button>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+
+
 
 
   </section>
@@ -142,8 +405,7 @@
         <form [formGroup]="inviteForm">
           <div class="form-group">
             <label for="formGroupExampleInput">Ingresa el email del invitado</label>
-            <input type="email" class="form-control"  placeholder="Email"
-              formControlName="email">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email">
           </div>
 
         </form>
