@@ -76,43 +76,362 @@ export class NewProjectComponent implements OnInit {
       descripcion: this.newProject.value.descripcion,
       creador: this.data.uid,
       fecha: Date.now(),
-      porcentajes: {
-        adecuacion:{
-          total : this.adecuacionForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.adecuacionForm.value.porcentaje) / 3
+      total : 0,
+      caracteristicas: [
+        {
+          nombre: 'Adecuacion Funcional',
+          total: this.adecuacionForm.value.porcentaje,
+          subtotal: parseFloat(this.adecuacionForm.value.porcentaje) / 3,
+          porcentaje: 0,
+          stroke: 440,
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Completitud Funcional',
+              hus: 0,
+              husc: 0,
+              thus : 0
+            },
+            {
+              total: 0,
+              hus: 0,
+              nombre: 'Correcion Funcional',
+              husc: 0,
+              thus : 0
+
+
+            },
+            {
+              total: 0,
+              nombre: 'Pertinencia Funcional',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+
+            },
+          ]
+
         },
-        eficiencia:{
-          total :  this.eficienciaForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.eficienciaForm.value.porcentaje) / 3
+
+        {
+          nombre: 'Eficiencia de Desempeño',
+          total: this.eficienciaForm.value.porcentaje,
+          subtotal: parseFloat(this.eficienciaForm.value.porcentaje) / 3,
+          sumacat : 0,
+          stroke: 440,
+          porcentaje: 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Comportamiento Temporal',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Utilización de Recursos',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+
+            },
+            {
+              total: 0,
+              nombre: 'Capacidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+
+            },
+          ]
+
         },
-        compatibilidad: {
-          total :  this.compatibilidadForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.compatibilidadForm.value.porcentaje) / 2    
+
+        {
+          nombre: 'Compatibilidad',
+          total: this.compatibilidadForm.value.porcentaje,
+          subtotal: parseFloat(this.compatibilidadForm.value.porcentaje) / 2,
+          porcentaje: 0,
+          stroke: 440,
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Coexistencia',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+
+            },
+            {
+              total: 0,
+              nombre: 'Interoperabilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+
+            },
+          ]
+
         },
-        usabilidad:{
-          total :  this.usabilidadForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.usabilidadForm.value.porcentaje) / 6
-        }, 
-        fiabilidad:{
-          total :  this.fiabilidadForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.fiabilidadForm.value.porcentaje) / 4
-        }, 
-        seguridad:{
-          total :  this.seguridadForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.seguridadForm.value.porcentaje) / 5
-        }, 
-        mantenibilidad:{
-          total :  this.mantenibilidadForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.mantenibilidadForm.value.porcentaje) / 5
-        }, 
-        portabilidad:{
-          total :  this.portabilidadForm.value.porcentaje,
-          subcaracteristica : parseFloat(this.portabilidadForm.value.porcentaje) / 3
+
+        {
+          total: this.usabilidadForm.value.porcentaje,
+          porcentaje: 0,
+          subtotal: parseFloat(this.usabilidadForm.value.porcentaje) / 6,
+          stroke: 440,
+          nombre: 'Usabilidad',
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Inteligibilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Aprendizaje',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Operabilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Protección frente a errores de usuario',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Estética',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Accesibilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+          ]
+
+        },
+
+        {
+          nombre: 'Fiabilidad',
+          total: this.fiabilidadForm.value.porcentaje,
+          subtotal: parseFloat(this.fiabilidadForm.value.porcentaje) / 4,
+          porcentaje: 0,
+          stroke: 440,
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Madurez',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Disponibilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Tolerancia a fallos',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Capacidad de recuperación',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+          ]
+
+        },
+
+        {
+          nombre: 'Seguridad',
+          total: this.seguridadForm.value.porcentaje,
+          subtotal: parseFloat(this.seguridadForm.value.porcentaje) / 5,
+          porcentaje: 0,
+          stroke: 440,
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Confidencialidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Integridad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'No repudio',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Autenticidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Responsabilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+
+          ]
+        },
+
+        {
+          nombre: 'Mantenibilidad',
+          total: this.mantenibilidadForm.value.porcentaje,
+          subtotal: parseFloat(this.mantenibilidadForm.value.porcentaje) / 5,
+          porcentaje: 0,
+          stroke: 440,
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Modularidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+
+            {
+              total: 0,
+              nombre: 'Reusabilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Analizabilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Capacidad de ser modificado',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Capacidad de ser probado',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+
+          ]
+
+        },
+
+        {
+          nombre: 'Portabilidad',
+          total: this.portabilidadForm.value.porcentaje,
+          subtotal: parseFloat(this.portabilidadForm.value.porcentaje) / 3,
+          porcentaje: 0,
+          stroke: 440,
+          sumacat : 0,
+          subs: [
+            {
+              total: 0,
+              nombre: 'Adaptabilidad',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Facilidad de instalación',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+            {
+              total: 0,
+              nombre: 'Capacidad de ser reemplazado',
+              hus: 0,
+              husc: 0,
+              thus : 0
+
+            },
+          ]
+
         }
-      }
+      ]
     };
 
-    const total = parseFloat(data.porcentajes.adecuacion.total) + parseFloat(data.porcentajes.compatibilidad.total) + parseFloat(data.porcentajes.eficiencia.total) + parseFloat(data.porcentajes.fiabilidad.total) + parseFloat(data.porcentajes.mantenibilidad.total) + parseFloat(data.porcentajes.portabilidad.total) + parseFloat(data.porcentajes.seguridad.total) + parseFloat(data.porcentajes.usabilidad.total);
+    const total = parseFloat(this.adecuacionForm.value.porcentaje) + parseFloat(this.compatibilidadForm.value.porcentaje) + parseFloat(this.eficienciaForm.value.porcentaje) + parseFloat(this.fiabilidadForm.value.porcentaje) + parseFloat(this.mantenibilidadForm.value.porcentaje) + parseFloat(this.portabilidadForm.value.porcentaje) + parseFloat(this.seguridadForm.value.porcentaje) + parseFloat(this.usabilidadForm.value.porcentaje);
     console.log(total);
 
     if (total == 100) {

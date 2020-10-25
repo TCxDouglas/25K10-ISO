@@ -5,17 +5,9 @@
     <p style="padding: 5px;">{{data.descripcion}}</p>
     
     
-    <mat-list role="list">
-        <mat-list-item role="listitem">Adecuacion Funcional : {{data.porcentajes.adecuacion.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Eficiencia de Desempeño : {{data.porcentajes.eficiencia.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Compatibilidad : {{data.porcentajes.compatibilidad.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Usabilidad : {{data.porcentajes.usabilidad.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Fiabilidad : {{data.porcentajes.fiabilidad.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Seguridad : {{data.porcentajes.seguridad.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Mantenibilidad : {{data.porcentajes.mantenibilidad.total}}%</mat-list-item>
-        <mat-list-item role="listitem">Portabilidad : {{data.porcentajes.portabilidad.total}}%</mat-list-item>
-    
-    </mat-list>
+<div *ngFor="let row of data.caracteristicas">
+  <p>{{row.nombre}}: {{row.total}}%</p>
+</div>
     
     
     

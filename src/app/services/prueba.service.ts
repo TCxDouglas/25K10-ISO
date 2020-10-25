@@ -44,7 +44,6 @@ export class PruebaService {
 
     }
 
-
     logout() {
 
         Swal.fire({
@@ -92,8 +91,6 @@ export class PruebaService {
     }
 
 
-
-
     //PROJECTS
 
     getProject(creator: string, id: string) {
@@ -130,7 +127,7 @@ export class PruebaService {
                         showConfirmButton: false,
                         timer: 1500
                     })
-                }, 1500);
+                }, 500);
 
             })
 
@@ -225,6 +222,17 @@ export class PruebaService {
         }));
     }
 
+    getHUSCaracteistica(creador , project, caracteristica){
+        return this.db.collection(`users/${creador}/projects/${project}/hus/`, ref => ref.where('caracteristica', '==', caracteristica)).snapshotChanges().pipe(map(actions => {
+
+            return actions.map(a => {
+                const data = a.payload.doc.data() as any;
+                data.id = a.payload.doc.id
+                return data;
+            })
+        }));
+    }
+
     addHU(data){
         return this.db.collection(`users/${data.creator}/projects/${data.project}/hus`).add(data).then(() => {console.log('exito')});
     }
@@ -232,5 +240,30 @@ export class PruebaService {
     deleteUH(data){
         return this.db.collection(`users/${data.creator}/projects/${data.project}/hus`).doc(data.id).delete().then(() => {console.log('exito')});
 
+    }
+
+
+    addEvaluation(data){
+        return this.db.collection(`users/${data.creator}/projects/${data.project}/evaluations`).add(data.evaluation).then(() => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Se publicó su evaluación!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
+
+    }
+
+    getEvaluations(creator, project){
+        return this.db.collection(`users/${creator}/projects/${project}/evaluations/`, ref => ref.orderBy('fecha', 'desc').limit(20)).snapshotChanges().pipe(map(actions => {
+
+            return actions.map(a => {
+                const data = a.payload.doc.data() as any;
+                data.id = a.payload.doc.id
+                return data;
+            })
+        }));
     }
 }

@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <span>Nueva Sala</span>
+    <span>Nueva Proyecto</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1" style="left: 80%;">
       <mat-icon>clear</mat-icon>
@@ -9,11 +9,15 @@
 <form [formGroup]="newProject">
     <div class="form-group">
       <label for="formGroupExampleInput">Ingresa el nombre de tu proyecto</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre" formControlName="nombre">
+      <input type="text" class="form-control" id="formGroupExampleInput" #nombre placeholder="Nombre" formControlName="nombre">
+      <mat-hint style="float: right;">{{nombre.value.length}} / minimo 5</mat-hint>
+
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Ingresa una descripcion sobre tu proyecto</label>
-      <input type="textarea" class="form-control" id="formGroupExampleInput2" placeholder="Descripcion" formControlName="descripcion">
+      <input type="textarea" class="form-control" id="formGroupExampleInput2" #descripcion placeholder="Descripcion" formControlName="descripcion">
+      <mat-hint style="float: right;">{{descripcion.value.length}} / minimo 60</mat-hint>
+
     </div>
   </form>
   

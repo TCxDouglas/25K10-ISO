@@ -1,0 +1,44 @@
+<div class="content-new-evaluation">
+    <mat-toolbar>
+        <span>NUEVA EVALUACION</span>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1" style="left: 75%;">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </mat-toolbar>
+    <div class="body-target">
+        <div class="container-ev-cards" *ngIf="caracteristicas">
+
+            <div class="cardd"  *ngFor = "let caracteristica of caracteristicas; let i = index">
+
+                <div class="boxx">
+                    <div class="percent">
+                        <svg>
+                            <circle cx="70" cy="70" r="70"></circle>
+                            <circle class="strouker" cx="70" cy="70" r="70" [style.strokeDashoffset]="caracteristica.stroke"></circle>
+                        </svg>
+                        <div class="number">
+                            <h2>{{caracteristica.porcentaje}}<span>%</span></h2>
+                        </div>
+                    </div>
+                    <h2 class="text-category">{{caracteristica.nombre}}</h2>
+                    <button mat-raised-button color="accent" (click)="evalueCategoria(caracteristica, i)" >Evaluar</button>
+                
+                </div>
+            </div>    
+
+           
+
+        </div>
+    </div>
+
+
+    <div class="button-row">
+
+        <button mat-raised-button color="warn" (click)="onClose()">Cancelar</button>
+    
+        <button mat-raised-button color="primary" type="submit" (click)="submit()"
+          >Guardar</button>
+      </div>
+
+</div>

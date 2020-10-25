@@ -36,6 +36,8 @@ import { NewProjectComponent } from './components/dialogs/new-project/new-projec
 import { ConfirmCreateComponent } from './components/dialogs/confirm-create/confirm-create.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HusComponent } from './components/dialogs/hus/hus.component';
+import { NewEvaluationComponent } from './components/dialogs/new-evaluation/new-evaluation.component';
+import { CategoryEvaluationComponent } from './components/dialogs/category-evaluation/category-evaluation.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { HusComponent } from './components/dialogs/hus/hus.component';
     NewProjectComponent,
     ConfirmCreateComponent,
     HusComponent,
+    NewEvaluationComponent,
+    CategoryEvaluationComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,10 @@ import { HusComponent } from './components/dialogs/hus/hus.component';
   entryComponents: [
     NewProjectComponent,
     ConfirmCreateComponent,
-    HusComponent
+    HusComponent,
+    NewEvaluationComponent,
+    CategoryEvaluationComponent,
+
  ],
   providers: [appRoutingProviders, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]
