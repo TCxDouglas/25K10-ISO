@@ -86,8 +86,8 @@ export class NewEvaluationComponent implements OnInit {
           usuario : this.data.user.email,
           fecha : Date.now(),
           status : this.status,
-          total: this.project.total,
-          porcentaje: this.project.total,
+          total: Math.round(this.project.total),
+          porcentaje: Math.round(this.project.total),
           comentario: text,
           caracteristicas: this.caracteristicas
         }
