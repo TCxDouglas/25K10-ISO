@@ -14,7 +14,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { MaterialModule } from './material/material.module';
-
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -38,6 +38,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HusComponent } from './components/dialogs/hus/hus.component';
 import { NewEvaluationComponent } from './components/dialogs/new-evaluation/new-evaluation.component';
 import { CategoryEvaluationComponent } from './components/dialogs/category-evaluation/category-evaluation.component';
+import { ViewEvaluationComponent } from './components/dialogs/view-evaluation/view-evaluation.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { CategoryEvaluationComponent } from './components/dialogs/category-evalu
     HusComponent,
     NewEvaluationComponent,
     CategoryEvaluationComponent,
+    ViewEvaluationComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { CategoryEvaluationComponent } from './components/dialogs/category-evalu
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     MaterialModule,
     routing,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ChartsModule
   ],
   entryComponents: [
     NewProjectComponent,
@@ -78,7 +81,7 @@ import { CategoryEvaluationComponent } from './components/dialogs/category-evalu
     HusComponent,
     NewEvaluationComponent,
     CategoryEvaluationComponent,
-
+    ViewEvaluationComponent
  ],
   providers: [appRoutingProviders, { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]

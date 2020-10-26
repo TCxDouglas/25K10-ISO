@@ -4,7 +4,7 @@
   <app-main-header [usuario]="usuario"></app-main-header>
 
 
-  <div class="row" style="margin-top: 50px;" >
+  <div class="row" style="margin-top: 50px;" *ngIf = "projects && projects.length>0; else Agregaa" >
 
  
       <div class="col-sm-6" *ngFor="let project of projects">
@@ -29,4 +29,8 @@
 
 </div>
 
-<!--/. container-fluid -->
+<ng-template #Agregaa>
+  <div style="text-align: center; display: grid; place-items: center; margin-top: 100px;">
+    <h2>Empieza agregando un nuevo proyecto :)</h2>
+  </div>
+</ng-template>

@@ -4,6 +4,8 @@ import { PruebaService } from '../../services/prueba.service';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { HusComponent } from '../dialogs/hus/hus.component';
 import { NewEvaluationComponent } from '../dialogs/new-evaluation/new-evaluation.component';
+import { ViewEvaluationComponent } from '../dialogs/view-evaluation/view-evaluation.component';
+
 
 
 
@@ -179,6 +181,21 @@ export class ViewProjectComponent implements OnInit {
     dialogConfig.hasBackdrop = true;
     dialogConfig.data = data;
    const ref = this.dialog.open(NewEvaluationComponent, dialogConfig);
+    ref.afterClosed().subscribe(async res => {
+      console.log(res);
+
+  })
+  }
+
+  viewEvaluation(evaluation){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '100%';
+    dialogConfig.height = '90%';
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.data = evaluation;
+   const ref = this.dialog.open(ViewEvaluationComponent, dialogConfig);
     ref.afterClosed().subscribe(async res => {
       console.log(res);
 
