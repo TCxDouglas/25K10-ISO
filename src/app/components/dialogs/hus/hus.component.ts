@@ -25,7 +25,7 @@ export class HusComponent implements OnInit {
     })
 
     this.huForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(5)]],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
 
     });
   }
@@ -47,6 +47,8 @@ export class HusComponent implements OnInit {
       }
 
       this.auth2.addHU(data);
+      this.huForm.reset();
+
     }
   }
 

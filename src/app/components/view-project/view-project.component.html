@@ -39,7 +39,7 @@
               <th>Status</th>
               <th>% de Evaluacion</th>
               <th>% Graficado</th>
-              <th>Comentario</th>
+              <th>Opinion</th>
               <th>Detalles</th>
 
             </tr>
@@ -63,12 +63,18 @@
                 }">{{evaluation.porcentaje}}%</span></td>
                 <td>
                   <div class="progress progress-xs">
-                    <div class="progress-bar progress-bar-danger" [style]="'width:' + evaluation.porcentaje+'%'"></div>
+                    <div class="progress-bar progress-bar-danger" [ngClass]="{
+                      'bg-red' : evaluation.status == 'Deficiente',
+                      'bg-warning '  : evaluation.status == 'Regular',
+                      'bg-info '  : evaluation.status == 'Acceptable',
+                      'bg-success '  : evaluation.status == 'Bueno',
+                      'bg-success '  : evaluation.status == 'Muy bueno'
+                    }" [style]="'width:' + evaluation.porcentaje+'%'"></div>
                   </div>
                 </td>
 
                 <td>{{evaluation.comentario}}</td>
-                <td class="mailbox-attachment"><a><i class="fa fa-link"></i> </a> </td>
+                <td class="mailbox-attachment"><a style="cursor: pointer;" (click)="viewEvaluation(evaluation)"><i class="fa fa-link"></i> </a> </td>
 
               </tr>
 
@@ -87,7 +93,7 @@
 
 
 
-    <mat-tab-group animationDuration="1500ms" style="margin-top: 80px; margin-bottom: 100px;">
+    <mat-tab-group *ngIf="my" animationDuration="1200ms" style="margin-top: 100px; margin-bottom: 100px;">
 
       <mat-tab label="Adecuación Funcional">
         <div class=" " style="margin: 0px auto;">
